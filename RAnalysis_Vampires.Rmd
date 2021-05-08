@@ -1,0 +1,670 @@
+---
+title: "R Analysis: Vampires"
+author: "Nidhish Birhade"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, eval=FALSE, include = FALSE,results='hide', message=FALSE)
+```
+
+### The Vampire's Bite: Are We Scared of Vampires?
+
+
+
+### Introduction & Research Question:
+
+Vampires are one of the most recognisable creatures of horror in modern culture. From *Twilight* to *True Blood*, vampires are the subject of a diverse body of work that forms a major part of popular culture. In the twenty-first century, vampires are presented in a very coded manner; white skin, sharp fangs, immortality. In light of this very specific description, the way we encounter the modern vampire through the western canon must be appraised—has the vampire always been like this? 
+
+The category of the modern vampire finds its roots in nineteenth century literature, with the seminal work *The Vampyre; a Tale* by John William Polidori in 1819, which eventually leads us to *Dracula* by Bram Stoker, the piece that defined the vampire for centuries to come. This project will be an attempt to use texts from nineteenth century literature that are centered on vampires and try to locate the horror in them. Are these texts scared of vampires, or is the fear of something else projected onto vampires? Are vampires figures that are fixed in meaning and background and their form is what produces horror, or is the horror located elsewhere, deriving from a specific moment in history and culture?
+
+
+
+### Research Hypothesis
+
+The category of the vampire in nineteenth century literature is a figure that portrays societal fears and anxieties rather than being essentially inscribed with horror.
+
+  
+### Corpus Description
+  
+I have already brought up two works of the pieces that went into this corpus; *The Vampyre; A Tale* and *Dracula*. *The Vampyre; a Tale* (1819)-which I hereafter refer to as *The Vampyre*-is a short story that is commonly attributed to solidifying the image of the vampire for future works. *Dracula* (1897) is a text that is hugely popular and influential even now, making it a natural choice for the corpus. Other than these two texts by men about male vampires, I went with three texts about female vampires. Chronologically, the first of these is *La Morte Amoureuse* (1836) by Théophile Gautier, which is named *Clarimonde* on Gutenberg (which is the title I work with). It is a short story translated from French that deals with a priest who fell in love with a female vampire called Clarimonde in his youth. The next is *Carmilla* (1871-1872) written by Sheridan Le Fanu, which is about a lesbian vampire. The last text is *The Blood of the Vampire* (1897), which took some scanning through the internet to find, and is the most recent novel in the corpus, alongside being the only one written by a woman. 
+
+A text that would be included if I had found a copy of it was *The Black Vampyre* (1819), but unfortunately I could not get my hands on it. I was considering including *Varney the Vampire* in the corpus, but its sheer length heavily skewed my results (it is nearly **667,000 words**), and so I dropped the idea of using it. In order to have a specific cultural focus, I decided to use only nineteenth century—primarily Victorian-era—texts. While this limited the temporal scope of the novels, it should lead to more cohesive and apt results.
+
+  
+
+### Summary Statistics 
+  
+Lengthwise, the corpus is clearly skewed towards two texts, *Dracula* and *the Blood of the Vampire*. The other three are significantly shorter, especially the two short stories *The Vampyre* and *Clarimonde*. While this perhaps affects my data negatively, the fact that some chunks of code uses all texts rather than using corpus-wide data—like how the top 10 words from each text are considered, not top 10 in the corpus—slightly alleviates this bias. 
+  
+![](images/image1.PNG)
+  
+In terms of frequency, the most common word used in the corpus is ‘time’; much of this is driven by *Dracula*, where it is the most frequently used word. As *Dracula* is a text that deals with the chase of the Count, perhaps the temporal dimension is heightened. The second most common word is ‘miss’, which is not surprising considering how many of these texts deal with young women and their interactions with, or their being, vampires. Then is ‘night’, which is associated even now (and seemingly also in the texts) with vampires. The next few frequent words are all proper nouns; ‘Harriet’, then ‘Van’, then ‘Brandt’, ‘Helsing’, and ‘Pullen’. Van Helsing appears more often than Count Dracula; in fact, ‘Count’ or ‘Dracula’ are not in the top ten words from *Dracula*—this is quite fascinating. On the other hand, the name ‘Harriet’, the main character of the Blood of the Vampire—who is also the eponymous vampire—is the most frequently used word of the text. The representation of vampires, and through whom we encounter the vampire, is something that affects the text and its formal mechanics, not just our reading.
+  
+![](images/image2.PNG)
+  
+As for correlations, two texts, *Dracula* and *The Blood of the Vampire* are extremely significantly correlated; the correlation is of 0.98 with an extremely low p-value. This could be because of how close the texts are temporally; both were published in 1897. *Dracula* and *Carmilla* are somewhat related—the correlation is low (0.20), but the p-value is small enough to be significant. The same case is with *Carmilla* and *The Blood of the Vampire*, where the correlation is 0.18. The other pairs of texts have a p-value of greater than 0.05, which seems to imply that the null hypothesis cannot be rejected—the texts possibly have no correlation. The fact that *Clarimonde* is a translated text might play into this. Along with this, the overall temporal dispersion of texts might also matter. The texts are also highly varying in length, as already noted, which might affect the frequency of what words appear, which might then affect correlation. 
+
+
+  
+### Data Visualisation 
+  
+#### Sentiment Analysis 
+  
+For the first visualization, I went with **Sentiment Analysis**. My reason for this was because I could use the NRC lexicon for the sentiment fear. Since my project aims to understand the horror surrounding the figure of the vampire, it was naturally fitting to use sentiment analysis for fear. I used a visualization that shows the top 10 words associated with fear across the texts in a combined graph, so that I can compare their relative frequencies. 
+  
+![](images/image3.PNG)
+  
+The first thing that stands out from the obtained visualization is how varied it is. The books clearly differ in the way they represent fear. Only two texts use the term ‘Vampire’ frequently; *Carmilla* & *The Vampyre*. While this may be because some texts use ‘vampyre’, it could also point towards how a text like *Dracula* does not call the Count a vampire often; it uses the word only 25 times. Even a text like *The Blood of the Vampire* does not use it significantly enough for the word to be ranked in the top 10 fear words. This points towards how the horror in the texts is derived not only from Vampires; as the graph shows, it could be death, graves, or even fire. 
+
+Another interesting aspect was that the two texts narrated by female characters about female vampires (*Carmilla* & *The Blood of the Vampire*) both use the term ‘ill’ very frequently, while it does not come up in the top fear words of the other texts. Could it be that when the vampire is female, associations with illness are brought up more? This ties in well with the medicalisation of female expression and the female body, especially in light of gendered concepts like hysteria. Further, hysteria is an intimately sexual and corporeal idea, deriving from the *hystera*, the Greek word for the uterus. Lesbian desire in *Carmilla* appears to be displaced onto vampires, which are seen as an “illness”, much like female sexuality would be in the 19th century. It is also important to note how the word ‘marry’ appears very frequently in *The Blood of the Vampire*. The text is about a female vampire whose presence kills those around her; she causes the death of two children, followed by the death of her newlywed husband. Her being a vampire ties intimately with her being unable to fulfill the expectations of being a woman; taking care of children and marriage. As this visualisation shows, the category of a vampire was not singular in the 19th century; a female vampire and its associations appear to differ greatly from a male vampire.
+
+  
+
+#### NER
+  
+The second visualisation I used was a **NER** sentiment analysis for the **characters** in the text. An interesting outcome here was that the vampire characters in fact do not appear very high on the list of entities with negative associations. Interestingly, in *The Blood of the Vampire*, Henry Harriet, the father of Harriet who performs experiments on slaves and is blamed as the cause for vampirism (by giving birth to a child with a slave), has more of a negative sentiment than Harriet, the vampire, herself. There is an interesting point here about vampirism becoming an illness thrust upon the female rather than her being responsible for it (unlike Dracula, who is clearly the villain of the diegetic in the eponymous novel). However, I did not use this chart very seriously because characters with fewer appearances seemed to be much more highly ranked. The top negative characters in this chart are minor characters—in fact, with the exception of characters from *Clarimonde* and *The Vampyre*, they are all characters that appear only once. I had a similar problem with the radar chart for characters with highest positive or negative sentiments. 
+
+
+  
+![](images/image4.PNG)
+  
+
+On the other hand, the radar chart about total was much more insightful. The first thing of interest is that none of the characters in the top 9 are vampires, with the sole exception of Harriet, who also happens to be the character who is unaware of being a vampire (and also the only vampire who is the protagonist of a text). 
+
+  
+
+*![](images/image5.PNG)
+  
+
+As for Dracula, the characters with the highest associated sentiments are Mina and Lucy; if a radar chart of the 6 characters with highest sentiment association in the text is drawn, only Lucy and Mina appears from *Dracula*. While *Dracula* appears to be a text about a male vampire being hunted by another man, the characters that experience affect, and produce affect in the reader, are the women. Even if the vampire is what binds the novel, the female characters are what make the experience of horror possible through their affective presence.
+
+I think it is also important to delve into insights I obtained while cleaning up the excel sheet of entities alongside these results. While making the corpus I chose texts to specifically highlight certain aspects of what vampirism might imply; race in *The Blood of the Vampire*, identity (in terms of geography and nationality) in *Dracula*, lesbian desire in *Carmilla*, and so on. However, NER sentiment analysis made me close-read these texts as I was cleaning them up. I came across lines that transformed my understanding of the texts. One of them is from *The Blood of the Vampire*;
+  
+
+> “Margaret Pullen, glancing up once, was struck by the look with which Harriet Brandt was regarding her—it was so full of yearning affection—almost of longing to approach her nearer, to hear her speak, to touch her hand! It amused her to observe it! She had heard of cases in which young unsophisticated girls had taken unaccountable affections for members of their own sex and trusted she was not going to form the subject for some such experience on Miss Brandt’s part.”
+  
+
+Here, we see a female characters pondering up the desire of the mixed-race Harriet, who is the vampire in the text. I came into the project with the perspective of using this text as a document to understand race and vampirism, but clearly queerness is also something that ties into paranoia in the text. *The Blood of the Vampire* deals with questions of female desire and queerness in relation to vampires just as much as it takes vampirism to be inextricable from being mixed-race. Another interesting quote was from *Carmilla*;
+
+
+> “It is enough to say that in very early youth he had been a passionate and favored lover of the beautiful Mircalla Countess Karnstein” 
+
+
+I picked *Carmilla* for its twin depiction of lesbianism and vampirism, but clearly it is also a text about female sexuality, and just of the lesbian kind, but always of the vampire-kind. Is female sexuality always an excess which finds association with the horror of vampires? 
+In a similar ‘muddling’, *Dracula* brings in questions of nationality, as evidenced by Count Dracula being from Translyania, which ties into ideas of race and identity, but it does so alongside a focus on the woman; Lucy is the core of the novel when viewed in terms of NER sentiment analysis, not Count Dracula or even Van Helsing. 
+
+Vampires are an unstable category that cannot be mapped into a one-to-one correspondence; they blur boundaries of race, gender, nationality, sexuality, and identity. 
+
+  
+  
+### Conclusion 
+
+The aim of this project was to try and locate the fear and horror in vampire novels from the 20th century. Rather than vampires being the singular and fixed source of horror in these texts, **Sentiment Analysis** points towards the fear being derived from various different aspects; death, graves, night. The fear of the vampire is not just a fear of form, but a fear of associations. **NER** showed how the vampires in the text do not appear in a fixed “negative” light. In fact, other characters often appear in more negative situations. Moreover, the vampires are not the characters who the core sentiments in a story necessarily revolve around. Accompanying NER through close reading, it appears that the vampire itself is an unstable category. What the fear of vampires is cannot be answered in a straight manner. Instead, the cultural weight and paranoia that sexuality, queerness, race, nationality, and gender carry are grafted onto the figure of the vampire. This appears to support the research hypothesis. 
+
+However, a further point of research could be  whether this is true only for vampires or for all figures of horror. Is our fear ever straightforward? Is there a fixed idea of what horror is, or does it always mingle with cultural anxieties, fears, and desires? Another interesting avenue would be to extend this project to vampires in literature from the 20th century. How do we arrive at the very specific image of a vampire that pervades the 21st century from the unstable category of the vampire in the 19th century?  
+
+
+### Reflection 
+
+Something that stands out as a clear disadvantage is the lack of insight that the smaller texts offered. *The Vampyre* is seminal to later works of the genre, and the general quantitative approach of the analysis did not allow much room for shorter texts, as it was so skewed towards the higher frequency. Another drawback was the tools themselves—as I already mentioned earlier, I found that lower occurrences in a text usually meant a higher raw score of sentiment, which meant that this data was actually not that useful for me by itself when total sentiment was not taken into account. 
+
+Something crucial that was missing was the role of the ‘I’ and the ‘eye’—the subjective, narrative voice. The fact that the form of the novel *Dracula* comprises of letters means that each time the narrative voice shifts, there are changes in viewpoints that might not translate neatly into the mode of analysis here. Further, the fact that the ‘I’ who narrates is never accounted for is definitely a drawback. This definitely was apparent while I was working with *Carmilla*, *The Vampyre*, and *Clarimonde*, where the feelings and desires surrounding the narrator were hard to translate into this assignment. On the other hand, the analysis of *The Blood of the Vampire*—a third-person narrative—felt deeply fulfilling in comparison, since each characters' role in the narrative could be appraised quite well. Perhaps there is a case to be made about a simple third-person narrative being suited perfectly to analysis of this type. 
+
+Another aspect was that without close reading I felt that I could not fully reach the specific moments of horror that stand out from the text. The inability to zero-down and work with “scenes”—or events—felt like quite a missing puzzle piece. While the sentence is the most grammatically apt breakdown of a piece, the actual sentiments revolve around what is happening in the diegesis, not the sentence itself. Furthermore, I felt that assigning equal weight to everything that occurs in a text might not be entirely correct. Surely the "scene" in *Carmilla* where Laura has uncanny dreams of being bit in breast before even encountering the vampire has more narrative—and even horror inducing—significance than another “normal” narrative sentence where a few words like ‘time’ or ‘god’ appear? A way to blend this would naturally be close reading, so you as a researcher bring in moments in the text that are of particular interest. Merging the technological tools with the human intervention of understanding the significance of affect appears to be key. 
+
+
+
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+#loading libraries
+
+#NLP Libraries
+library(rJava)
+library(openNLP)
+library(NLP)
+library(syuzhet)
+
+#Tidy data manipulation
+library(stringr)
+library(dplyr)
+library(tidyr)
+library(tidytext)
+library(readr)
+library(stringi)
+library(imager)
+
+#Corpus ingest
+library(gutenbergr)
+
+#Helper library
+library(fuzzyjoin)
+library(sqldf)
+
+#Graphics library
+library(ggiraphExtra)
+library(ggplot2)
+library(RColorBrewer)
+library(scales)
+```
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+#creating corpus
+#if corpus is already created, skip this
+
+texts <- gutenberg_download(c(345, 10007, 6087, 22661), mirror="http://mirrors.xmission.com/gutenberg/", meta_fields = c("author","title"))
+
+blood <- read.csv("blood2.csv")
+
+corpus <- texts %>% 
+  bind_rows(blood) %>% group_by(title)
+
+
+write.csv(corpus, "corpus.csv")
+
+corpus_clean <- corpus %>%
+                mutate(text = str_replace_all(text,"_"," "))
+```
+
+
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+### summary statistics
+
+corpus <- read.csv("corpus.csv")
+
+corpus$text <- as.character(corpus$text)
+
+
+tidy_corpus <- corpus %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words)
+
+tidy_corpus %>%
+  count(word, sort = TRUE)  
+
+tidy_corpus %>% #Plot1
+  count(word, sort = TRUE) %>%
+  top_n(10) %>% 
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col() +
+  labs(title = "Top ten Frequent Words in the corpus", 
+       
+       x = "Top ten Words by Text",
+       y = "Frequency")+
+  theme_light()+
+  coord_flip()
+
+tidy_corpus %>% #Plot2
+  count(title, sort = TRUE) %>%
+  top_n(5) %>% 
+  mutate(title = reorder(title, n)) %>%
+  ggplot(aes(title, n)) +
+  geom_col(width=0.8) +
+  labs(title = "Size of the books in the corpus", 
+       
+       x = "Books",
+       y = "Number of Words")+
+  theme_light()+
+  geom_text(aes(label = n)) +
+  coord_flip()
+```
+
+
+
+``` {r echo=FALSE, results='hide', message=FALSE}
+
+##correlations
+
+tidy_Dracula <- tidy_books1 %>% filter(title == "Dracula") %>% count(word, sort = TRUE) 
+
+tidy_Carmilla <- tidy_books1 %>% filter(title == "Carmilla") %>% count(word, sort = TRUE) 
+
+tidy_Vampyre <- tidy_books1 %>% filter(title == "The Vampyre; a Tale")%>% count(word, sort = TRUE) 
+
+tidy_Clarimonde <- tidy_books1 %>% filter(title == "Clarimonde")%>% count(word, sort = TRUE) 
+tidy_Blood <- tidy_books1 %>% filter(title == "The Blood of the Vampire")%>% count(word, sort = TRUE) 
+
+
+frequency <- bind_rows(mutate(tidy_Dracula, author = "Stoker"),
+                       mutate(tidy_Carmilla, author = "LeFanu"),
+                       mutate(tidy_Vampyre, author = "Polidori"),
+                       mutate(tidy_Clarimonde, author = "Gautier"),
+                       mutate(tidy_Blood, author = "Marryat")) %>% 
+  mutate(word = str_extract(word, "[a-z']+")) %>% 
+  count(author, word) %>% 
+  group_by(author) %>%
+  mutate(proportion = n / sum(n)) %>%
+  select(-n) %>%
+  spread(author, proportion) %>%
+  gather(author, proportion, `Stoker`)
+
+
+cor.test(data = frequency[frequency$author == "Stoker",], 
+         ~ proportion + `Marryat`)
+
+cor.test(data = frequency[frequency$author == "Stoker",],
+         ~ proportion + `Gautier`)
+
+cor.test(data = frequency[frequency$author == "Stoker",],
+         ~ proportion + `LeFanu`)
+
+cor.test(frequency$LeFanu, frequency$Marryat)
+cor.test(frequency$Gautier, frequency$LeFanu)
+cor.test(frequency$Gautier, frequency$Marryat)
+
+```
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+### Sentiment Analysis
+
+tidy_books1 <- corpus %>%
+  group_by(title) %>%
+  mutate(linenumber = row_number(),
+         chapter = cumsum(str_detect(text, regex("^chapter [\\divxlc]",
+                                                 ignore_case = TRUE)))) %>%
+  ungroup() %>%
+  unnest_tokens(word, text)
+
+
+
+```
+
+```{r echo=FALSE, results='hide', message=FALSE}
+##sentiment dictionary 
+
+nrcfear <- get_sentiments("nrc") %>%
+  filter(sentiment == "fear")
+
+```
+
+```{r echo=FALSE, results='hide', message=FALSE}
+##word frequency 
+##change title to obtain statistics for other texts.
+
+tidy_books1 %>%
+  filter(title == "Dracula") %>%
+  inner_join(nrcfear) %>%
+  count(word, sort = TRUE)
+
+```
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+##fear plot
+nrc_word_counts_full <- tidy_books1 %>%
+  inner_join(nrcfear) %>% 
+  group_by(title) %>% 
+  add_count(word, sentiment, sort = TRUE) %>% 
+  distinct_at(vars(word), .keep_all = TRUE) %>% 
+  ungroup()
+```
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+nrc_word_counts_full %>%
+  group_by(title) %>%
+  top_n(10) %>%
+  mutate(word = reorder(word, n)) %>% 
+  ungroup() %>% 
+  ggplot(aes(word, n, fill = sentiment)) +
+  geom_col(show.legend = FALSE) +
+  labs(y = "Contribution to fear",
+       x = NULL) +
+  facet_wrap(~title)+
+  coord_flip()
+
+```
+
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+### NER
+
+# Priming for NLP
+### Collapse text column
+
+corpus_text <- corpus_clean %>%
+  group_by(title) %>%
+  mutate(text = paste(as.character(text), collapse = " ")) %>%
+  distinct() %>%
+  ungroup()
+
+
+## Convert to nested String object
+
+corpus_text_str <- corpus_text %>%
+  group_by(title) %>%
+  mutate(text = list(as.String(text)))
+
+
+#set pipeline
+wordAnnotator <- Maxent_Word_Token_Annotator(language = "en")
+sentenceAnnotator <- Maxent_Sent_Token_Annotator(language = "en")
+characterAnnotatorEN <- Maxent_Entity_Annotator(language = "en", kind = "person")
+locationAnnotatorEN <- Maxent_Entity_Annotator(language = "en", kind = "location")
+
+pipeline <- list(sentenceAnnotator,
+                 wordAnnotator,
+                 characterAnnotatorEN,
+                 locationAnnotatorEN)
+```
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+#### Chunking and extracting entities
+#create empty df
+full_df = as.data.frame(NULL)
+chunk_size = 10000
+
+for (j in 1:nrow(corpus_text_str)) {
+  #get number of chunks
+  chunk <- nchar(corpus_text_str$text[j]) %/% chunk_size
+  text <- unlist(corpus_text_str$text[j])
+  text <- as.String(text)
+  
+  
+  for (i in 1:chunk) {
+    print(paste0(
+      "Processing title: ",
+      corpus_text_str$title[j],
+      " - section ",
+      i,
+      " of ",
+      chunk
+    ))
+    temp_df = NULL
+    
+    if (i == 1) {
+      m = 1
+    }
+    
+    if (i == chunk) {
+      m = n + 1
+      n = (nchar(text))
+    }
+    else{
+      n <- m + chunk_size
+    }
+    
+    temp_string = text[m, n]
+    
+    temp_ann <- NLP::annotate(temp_string, pipeline)
+    
+    temp_df <-  temp_ann %>%
+      as.data.frame %>% 
+      filter(type != "word")
+    
+    temp_df <- temp_df %>%
+      mutate(words = str_sub(
+        as.character(temp_string),
+        start = temp_df$start,
+        end = temp_df$end
+      )) %>%
+      unnest_wider(features)
+    
+    temp_df <- temp_df %>%
+      mutate(author = corpus_text_str$author[j], title = corpus_text_str$title[j]) 
+     
+    full_df <- full_df %>%
+      bind_rows(temp_df)
+    
+    m <- m + chunk_size
+  }
+}
+
+full_df_backup <- full_df
+```
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+## Rough clean the output
+
+full_df <-  full_df %>%
+  mutate(words = str_remove_all(words, '[:punct:]'))
+
+## Realigning the columns
+full_df <- full_df %>% 
+          relocate(c("author","title"),.before = 1) %>% 
+          select(-id, -constituents) 
+
+## Backing up processed data
+write.csv(full_df, "annotation_backup.csv") 
+```
+
+
+
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+####Restore data
+
+full_df <- read.csv("annotation_backup.csv", stringsAsFactors = FALSE)
+```
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+#### Appending locations in each sentence
+
+df1 <- full_df %>%
+  filter(type == "sentence") %>%
+  mutate(sentence_nr = row_number()) %>%
+  select(author, title, words, sentence_nr) %>% 
+  rename(sentence = words)
+
+df2 <-  full_df %>%
+  filter(type == "entity") %>%
+  mutate(record = row_number()) %>% 
+  select(words, kind)
+```
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+#### cleaning entities, 
+
+df2 <- df2 %>% 
+      mutate(words = str_replace_all(words, "Dear ", "")) %>% 
+      mutate(words = str_replace_all(words, "Young ", "")) %>%
+      mutate(words = str_replace_all(words, "Ah", "")) %>%
+      mutate(words = str_replace_all(words, "Oh", "")) %>%
+      mutate(words = str_trim(words, side= "both")) %>% 
+      mutate(words = str_trim(gsub("[A-Z]{2,}","",words))) %>% 
+      mutate(words = str_squish(words)) %>%
+      mutate_all(~ifelse(. %in% c("N/A", "null", ""), NA, .)) %>% 
+      drop_na() %>%
+      dplyr::filter(nchar(words) > 2) %>% 
+      distinct()
+      
+capital_stopwords <- as.data.frame(str_to_title(stop_words$word)) %>% 
+                        rename(words= 1)
+
+df2 <- df2 %>% 
+        anti_join(capital_stopwords)
+
+write.csv(df2, "pre_join_entities.csv")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+### joining the two sections
+
+#Prep the data
+pre_join <- read_csv("pre_join_entities.csv", na = "NA")
+
+pre_join <- pre_join %>%  
+              select(words, kind) %>% 
+              drop_na()  %>% 
+              distinct()
+          
+#Execute a SQL query
+full_join_df <- sqldf("SELECT *
+      FROM df1
+      LEFT JOIN pre_join ON df1.sentence LIKE '%' || pre_join.words || '%'")
+
+
+ full_join_df <- full_join_df %>% 
+                   distinct()
+ 
+write.csv(full_join_df, "entities_raw.csv")
+```
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+#### read in manually cleaned entities
+
+clean_entities <- read.csv("entities_raw copy.csv")
+```
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+##### Unnest sentences
+
+entities_unnest <- clean_entities %>%
+  unnest_tokens(word, sentence)
+
+entities_unnest <- entities_unnest %>% 
+                        anti_join(stop_words)
+
+## Peel off the sentiments
+#create sentiment table
+
+entities_sentiment <- entities_unnest %>%
+  group_by(author, title) %>%
+  inner_join(get_sentiments("nrc")) %>% 
+  count(sentence_nr, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = positive - negative)
+
+##### Sticking them back on
+
+entities_matches_sentiment <- entities_unnest %>%
+  inner_join(entities_sentiment) %>%
+  distinct_at(vars(-word))  
+
+#### bug clean up 
+entities_matches_sentiment <- entities_matches_sentiment %>% 
+                              rename(entity = words) 
+
+####final tally 
+
+ner_total_sentiment <- entities_matches_sentiment %>% 
+                          group_by(author, title, entity, kind) %>%  
+                           summarise(total = mean(sentiment))  
+```
+
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+#### Visualization
+
+#top 10 characters based on their positive sentiment
+
+ner_total_sentiment %>%
+  group_by(title) %>%
+  filter(kind == "person") %>%
+  top_n(10) %>% 
+  mutate(entity = reorder(entity, total)) %>% 
+  ggplot(aes(entity, y = total, fill = title)) +
+  geom_col() +
+  facet_wrap( ~ title, scales = "free") +
+  coord_flip()
+
+```
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+#top characters with a negative sentiment 
+
+ner_total_sentiment %>%
+  group_by(title) %>%
+  filter(kind == "person") %>%
+   top_n(-7) %>% 
+ mutate(entity = reorder(entity, (desc(total)))) %>%  
+  ggplot(aes(entity, y = total, fill = title)) +
+  geom_col() +
+  labs(title = "NER Sentiment Analysis", 
+      
+       y = "Top Negative Characters") +
+  facet_wrap( ~ title, scales = "free") +
+  coord_flip()
+
+```
+
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+##total emotion by character
+
+radar_facet <- entities_matches_sentiment %>%
+  select(-positive,-negative,-sentiment) %>% 
+  filter(kind == "person") %>%
+  group_by(title, entity, kind) %>%
+  summarise(across(anger:trust, sum)) %>%
+  mutate(total = rowSums(across(where(is.numeric))))  %>%
+  arrange(desc(total)) %>%
+  head(9)  %>% #Change number to include more or fewer entities
+  mutate(across(anger:trust, .fns = ~ round((. / total) * 100))) %>%
+  select(-total)
+
+ggRadar(
+  data = radar_facet,
+  mapping = aes(color = title, facet = entity),
+  rescale = FALSE,
+  interactive = TRUE,
+  use.label = TRUE,
+  size = 2,
+  legend.position = "right"
+)
+```
+
+
+
+
+```{r echo=FALSE, results='hide', message=FALSE}
+
+#radar plot by highest positive/negative emotion
+#change tail to head for positive 
+
+radar_facet_sentiment <- entities_matches_sentiment %>%
+  #Change filter to locations for locations
+  filter(kind == "person") %>%
+  group_by(title, entity, kind) %>%
+  summarise(across(anger:sentiment, sum)) %>%
+  arrange(desc(sentiment))  %>%
+  tail(8)  %>% #Change number to include more or fewer entities
+  select(-positive,-negative,-sentiment)
+
+ggRadar(
+  data = radar_facet_sentiment,
+  mapping = aes(color = title, facet = entity),
+  rescale = FALSE,
+  interactive = TRUE,
+  use.label = TRUE,
+  size = 2,
+  legend.position = "right"
+)
+```
+
+
+
+
+
+
+
+
+
+
+
+
